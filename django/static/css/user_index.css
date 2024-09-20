@@ -1,0 +1,19 @@
+h1 {
+    color : darkslategray
+}
+
+body {
+    background-color: rgb(242, 242, 250);
+}
+
+button, input[type="button"], input[type="submit"] {
+    background-color: rgb(205, 228, 113);
+    color: rgb(146, 59, 59);
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 10px;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+}

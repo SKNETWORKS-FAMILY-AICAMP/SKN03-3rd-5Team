@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>그래프 예시</title>
+    {% load static %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{% static 'css/user_index.css' %}">
+</head>
+<body>
+    <h1>그래프 예시</h1>
+    
+    <div>
+        <button onclick="changeData('dataset1')">데이터셋 1</button>
+        <button onclick="changeData('dataset2')">데이터셋 2</button>
+        <button onclick="changeData('dataset3')">데이터셋 3</button>
+        <button onclick="changeData('dataset4')">데이터셋 4</button>
+    </div>
+    <div style="width: 45%; display: inline-block; padding-left: 10px;">
+        <canvas id="myChart1"></canvas>
+    </div>
+    <div style="width: 45%; display: inline-block; padding-left: 10px;">
+        <canvas id="myChart2"></canvas>
+    </div>
+    <div style="width: 45%; display: inline-block; padding-left: 10px;">
+        <canvas id="myChart3"></canvas>
+    </div>
+    <div style="width: 45%; display: inline-block; padding-left: 10px;">
+        <canvas id="myChart4"></canvas>
+    </div>
+
+    <script type="text/javascript" src="{% static 'js/user_index.js' %}"></script>
+</body>
+</html>
