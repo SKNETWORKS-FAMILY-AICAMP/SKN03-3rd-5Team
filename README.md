@@ -14,3 +14,13 @@ django 프로젝트 내 import_data.py 스크립트 파일을 생성,
 저장된 내용 확인
 
 장고 내에서 ML 모델 학습 및 해당 결과 출력
+
+![image](https://github.com/user-attachments/assets/ad53e05e-6a86-4cf6-bf11-e83f4483c405)
+
+confusion matrix 결과 확인 가능 
+
+threshold 값 조정 가능
+
+해당 학습 결과에 대한 randomforest 모델 학습, 결과 확인
+
+![image](https://github.com/user-attachments/assets/358b2aef-12f1-46d4-afe0-7643644a0abd)
