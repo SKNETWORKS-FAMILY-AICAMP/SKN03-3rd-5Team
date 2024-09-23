@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Forest Model Result</title>
+    {% load static %} <!-- static 태그를 로드 -->
+</head>
+<body>
+    <h1>Random Forest Model Result</h1>
+    <p>Model Accuracy: {{ rf_accuracy }}</p>
+    <p>Training Samples: {{ n_train }}</p>
+    <p>Test Samples: {{ n_test }}</p>
+    
+    <h2>Tree Visualization</h2>
+    <img src="{% static tree_image_path %}" alt="Random Forest Tree Image">
+
+    <h2>Adjust Max Depth</h2>
+    <form method="post" action="{% url 'retrain_random_forest' %}">
+        {% csrf_token %}
+        <label for="max_depth">Max Depth:</label>
+        <input type="number" name="max_depth" value="{{ max_depth }}" min="1">
+        <button type="submit">Train with New Max Depth</button>
+    </form>
+</body>
+</html>

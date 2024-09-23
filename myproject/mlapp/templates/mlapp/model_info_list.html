@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trained Model Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        thead {
+            background-color: #333;
+            color: #fff;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: center;
+        }
+        th {
+            background-color: #555;
+            color: #fff;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Trained Model Information</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Model Name</th>
+                <th>Accuracy</th>
+                <th>Adjusted Accuracy</th>
+                <th>Precision</th>
+                <th>Recall</th>
+                <th>Threshold</th>
+                <th>Training Samples</th>
+                <th>Test Samples</th>
+                <th>Created At</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for info in model_infos %}
+            <tr>
+                <td>{{ info.model_name }}</td>
+                <td>{{ info.accuracy|floatformat:2 }}</td>
+                <td>{{ info.adjusted_accuracy|floatformat:2 }}</td>
+                <td>{{ info.precision|floatformat:2 }}</td>
+                <td>{{ info.recall|floatformat:2 }}</td>
+                <td>{{ info.threshold|floatformat:2 }}</td>
+                <td>{{ info.n_train }}</td>
+                <td>{{ info.n_test }}</td>
+                <td>{{ info.created_at|date:"Y-m-d H:i" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
