@@ -24,7 +24,7 @@
 </br></br>
 2) 해당 데이터를 트리 기반 모델을 사용하여 이탈할 확률이 높게 예측된 이유 확인
 </br></br>
-<img src="https://github.com/user-attachments/assets/2dfe3278-51ea-4964-95e8-0ba296488a04" alt="김성은" width="700" />
+<img src="https://github.com/user-attachments/assets/dde29d9a-890c-4903-8eec-3a55519b68e7" alt="김성은" width="700" />
 </br></br>
 
 - **결론**   
