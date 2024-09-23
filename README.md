@@ -18,13 +18,14 @@
 3. 예측 가능한 이탈 고객 방지 대안 솔루션   
 ###   
 - **가설**   
-1) 
-   가입 고객 이탈 예측 모델을 사용하여 confusion matrix를 만들었을 때 모델이 이탈하지 않았지만 이탈한다고 예측한 고객 FP(False Positive)의 데이터를 threshold을 사용,
-   변화를 분석하면서 이탈 할 확률이 높은 고객과 낮은 고객을 구분 할 수 있을 것이다.  
+1) 가입 고객 이탈 예측 모델을 사용하여 confusion matrix를 만들었을 때, 실제로 고객이 이탈하지 않았지만 예측 모델이 이탈이라고 예측하는 FP(False Positive)의 데이터를 확인한다.
+   위의 confusion matrix의 threshold 값의 변화로 도출되는 FP의 결과가 이탈 확률이 높은 고객과 낮은 고객을 구분하는 기준이 될 수 있다.
 <img src="https://github.com/user-attachments/assets/a6785af6-b478-40c7-a2f8-fd5761dd87dd" alt="김성은" width="700" />
-
-2) 해당 데이터를 트리 기반 모델을 사용하여 이탈할 확률이 높게 예측된 이유 확인  
+</br></br>
+2) 해당 데이터를 트리 기반 모델을 사용하여 이탈할 확률이 높게 예측된 이유 확인
+</br></br>
 <img src="https://github.com/user-attachments/assets/c2ad9567-1010-4f97-928f-7f2c262e816b" alt="김성은" width="700" />
+</br></br>
 
 - **결론**   
 이를 통해 이탈 확률이 높은 고객들의 특징을 분석하고 이탈을 방지하는 솔루션을 제공할 수 있을 것이다.   
@@ -36,10 +37,10 @@
 3) 추가로 트리 시각화를 통해 각 데이터 분할 과정과 최종 결정이 어떻게 이루어졌는지 시각적으로 이해할 수 있다.
 ###   
 
-- 아키텍처
+- **아키텍처**
 <img src="https://github.com/user-attachments/assets/1b4f6470-4e39-438b-8029-bccb8986fa64" alt="김성은" width="800" />
 
-- workflow   
+- **workflow**   
 <img src="https://github.com/user-attachments/assets/847a5338-366c-4ccc-9995-592c18689c6d" alt="김성은" width="800" />
 
 
