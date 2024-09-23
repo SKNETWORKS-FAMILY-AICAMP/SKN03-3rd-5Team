@@ -7,30 +7,29 @@
 | 김성은 (PM) | 김지훈 | 송영빈 | 김재성 | 박규택 |   
 | Data Analysis<br>Data-preprocessing<br>모델 학습<br>(Logistic Regression)<br>프론트<br>Result Comfirm | Data Analysis<br>Data-preprocessing<br>모델 학습<br>(Random Forest Classification)<br>프론트<br>Label Flipping | Data Analysis<br>모델 학습<br>(Random Forest Classification)<br>Analystic Arrange | Data Analysis<br>모델 학습<br>(Logistic Regression)<br>Analystic Arrange | Data Analysis<br>모델 학습<br>(Logistic Regression)<br>(XGBoost)<br>(LightGBM) |   
 # :computer: 프로젝트 개요
-- **프로젝트 목표 및 목적**  
+- **프로젝트 목적**  
 1. 통신사 가입 고객 데이터를 분석하여 이탈 고객 예측 모델 개발   
 2. 고객 이탈 대상 확인 후 해당 대상들의 특성을 파악하여 레이블 플리핑을 활용한 이탈 고객 예측 모델의 근거 확립  
 ###    
 - **레이블 플리핑**   
-  데이터셋에서 일부 샘플의 레이블(타겟 값)을 변경하는 것을 말합니다. 예를 들어, 레이블이 0인 샘플을 1로 바꾸거나, 그 반대로 바꾸는것   
+  데이터셋에서 일부 샘플의 레이블(타겟 값)을 변경하는 것을 말한다.   
+  예를 들어, 레이블이 0인 샘플을 1로 바꾸거나, 그 반대로 바꾸는 것을 말한다.      
 ###    
 - **왜 레이블 플리핑을 사용하는가?**   
-당신이 수행한 작업은 FP를 TN으로 변경하기 위해 레이블 플리핑을 사용한 것입니다. 이는 다음과 같은 목적을 가지고 있다.   
-
-오류 분석: 모델이 왜 FP 오류를 내는지 이해하기 위해 해당 샘플들의 레이블을 변경하고 모델의 반응을 관찰한다.
-특징 분석: FP로 분류된 샘플의 특징(feature)들을 살펴보고, 어떤 특징들이 모델의 예측에 영향을 미치는지 파악한다.
-모델 개선: 이러한 분석을 통해 모델의 성능을 향상시킬 수 있는 인사이트를 얻는다.
+  오류 분석: 모델이 왜 FP 오류를 내는지 이해하기 위해 해당 샘플들의 레이블을 변경하고 모델의 반응을 관찰한다.   
+  특징 분석: FP로 분류된 샘플의 특징(feature)들을 살펴보고, 어떤 특징들이 모델의 예측에 영향을 미치는지 파악한다.   
+  모델 개선: 이러한 분석을 통해 모델의 성능을 향상시킬 수 있는 인사이트를 얻는다.   
 ###    
 - **프로젝트 요구사항**   
 1. 가입 고객 이탈 예측 모델 개발   
-2. 장고를 이용한 예측 결과 화면 개발   
-###   
-- **가설**   
-1) 가입 고객 이탈 예측 모델을 사용하여 confusion matrix를 만들었을 때, 실제로 고객이 이탈하지 않았지만 예측 모델이 이탈이라고 예측하는 FP(False Positive)의 데이터를 확인한다.
-   위의 confusion matrix의 threshold 값의 변화로 도출되는 FP의 결과가 이탈 확률이 높은 고객과 낮은 고객을 구분하는 기준이 될 수 있다.
-<img src="https://github.com/user-attachments/assets/a6785af6-b478-40c7-a2f8-fd5761dd87dd" alt="김성은" width="700" />
-</br></br>
-2) 해당 데이터를 트리 기반 모델을 사용하여 이탈할 확률이 높게 예측된 이유 확인
+2. 장고를 이용한 예측 결과 화면 개발     
+###    
+- **가설**
+1. 가입 고객 이탈 예측 모델을 사용하여 confusion matrix를 만들었을 때, 실제로 고객이 이탈하지 않았지만 예측 모델이 이탈이라고 예측하는 FP(False Positive)의 데이터를 확인한다.
+   위의 confusion matrix의 threshold 값의 변화로 도출되는 FP의 결과가 이탈 확률이 높은 고객과 낮은 고객을 구분하는 기준이 될 수 있다.   
+<img src="https://github.com/user-attachments/assets/a6785af6-b478-40c7-a2f8-fd5761dd87dd" alt="김성은" width="700" />     
+  
+2. 해당 데이터를 트리 기반 모델을 사용하여 이탈할 확률이 높게 예측된 이유 확인   
 </br></br>
 <img src="https://github.com/user-attachments/assets/dde29d9a-890c-4903-8eec-3a55519b68e7" alt="김성은" width="700" />
 </br></br>
@@ -109,11 +108,23 @@ logistic regression / Random Forest Classfication / confusion matrix / Matplotli
 기술 지원을 받지 않고 장기 계약(2년)이 아닌 고객들이 이탈할 가능성이 더 높아 보인다.   
 
 ###   
-- ** **    
+
  
 ###   
-# ⚠오류 해결 과정   
+# ⚠오류 해결 과정    
+1. for문 반복 관련 오류    
+   원인: 가중치 도입 실수(혼동행렬에 그냥 곱하기)   
+   해결: sample_weights 따로 적용   
+###    
+2. for문 반복 관련 오류2   
+   for문을 통해 기준값(trashold)과 가중치(weights) 동시 적용시 학습 문제 trashold 와 weights 중에서 1가지만 학습이 진행됨   
+   오류가 되는 부분은 확인- 정확한 원인은 파악 불가 trashold만 정상작동 : All_y_pred = model.predict_proba(X)[:,1] weights만 정상작동 : y_pred_series = pd.Series(All_y_pred)   
+   해결: 각각 한번씩 반복하며 학습을 진행함   
 ###   
+3. 소수점 오류   
+   그래프 title에 보이는 소수값이 틔는 현상이 존재   
+   해결 : " *0.1 " => " /10 " 변경   
+###      
 # 📌느낀점   
 김성은 : 처음 Logistic으로 할 계획이었는데 다들 자발적으로 다른 모델로 분석을 해주셔서 다양한 관점으로 분석할 수 있었습니다. 
 다들 적극적인 의견 제시와 제안한 의견 모두 반영하기 위해 노력을 해주셔서 프로젝트 운영이 수월했습니다. 
