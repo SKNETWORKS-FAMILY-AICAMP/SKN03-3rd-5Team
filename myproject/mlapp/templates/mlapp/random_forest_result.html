@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Forest Model Result</title>
+    {% load static %} <!-- static 태그를 로드 -->
+</head>
+<body>
+    <h1>Random Forest Model Result</h1>
+    <p>Model Accuracy: {{ rf_accuracy }}</p>
+    <p>Training Samples: {{ n_train }}</p>
+    <p>Test Samples: {{ n_test }}</p>
+    
+    <h2>Tree Visualization</h2>
+    <img src="{% static tree_image_path %}" alt="Random Forest Tree Image">
+
+    <h2>Adjust Max Depth</h2>
+    <form method="post" action="{% url 'retrain_random_forest' %}">
+        {% csrf_token %}
+        <label for="max_depth">Max Depth:</label>
+        <input type="number" name="max_depth" value="{{ max_depth }}" min="1">
+        <button type="submit">Train with New Max Depth</button>
+    </form>
+
+    <h2>노드 결정 뒤집기 결과</h2>
+    {% if flip_results %}
+    <table border="1">
+        <tr>
+            <th>샘플 ID</th>
+            <th>노드 인덱스</th> <!-- 노드 인덱스 열 추가 -->
+            <th>샘플 개수</th>   <!-- 샘플 개수 열 추가 -->
+            <th>특징</th>
+            <th>특징 값</th>
+            <th>원래 예측</th>
+            <th>대체 예측</th>
+            <th>노드 분기 조건</th>
+            <th>Gini 값</th>
+        </tr>
+        {% for result in flip_results %}
+        <tr>
+            <td>{{ result.sample_id }}</td>
+            <td>{{ result.node_index }}</td> <!-- 노드 인덱스 표시 -->
+            <td>{{ result.n_samples_at_node }}</td> <!-- 샘플 개수 표시 -->
+            <td>{{ result.feature_name }}</td>
+            <td>{{ result.feature_value }}</td>
+            <td>{{ result.original_prediction }}</td>
+            <td>{{ result.alternative_prediction }}</td>
+            <td>{{ result.node_condition }}</td>
+            <td>{{ result.gini_value|floatformat:4 }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>결정을 뒤집었을 때 예측이 변경된 샘플이 없습니다.</p>
+    {% endif %}
+
+</body>
+</html>
