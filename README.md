@@ -5,17 +5,25 @@
 | <img src="https://github.com/user-attachments/assets/babc6853-a31b-43ca-833c-15240486796c" alt="김성은" width="1800" /> | <img src="https://github.com/user-attachments/assets/3f9a9d23-16da-4a30-8825-39d2986b9a2a" alt="김지훈" width="2000" /> | <img src="https://github.com/user-attachments/assets/e4171517-6554-42ca-8f6c-8c3603a24a10" alt="송영빈" width="2000" /> | <img src="https://github.com/user-attachments/assets/65a67801-0ea0-429c-94cf-5844047bcfa8" alt="김재성" width="2000" /> | <img src="https://github.com/user-attachments/assets/c8931a7a-f025-4b4c-90d0-b894f3fa34ae" alt="박규택" width="2000" /> | 
 |:----------:|:----------:|:----------:|:----------:|:----------:|
 | 김성은 (PM) | 김지훈 | 송영빈 | 김재성 | 박규택 |   
-
+| Data Analysis<br>Data-preprocessing<br>모델 학습<br>(Logistic Regression)<br>프론트<br>Result Comfirm | Data Analysis<br>Data-preprocessing<br>모델 학습<br>(Random Forest Classification)<br>프론트<br>Label Flipping | Data Analysis<br>모델 학습<br>(Random Forest Classification)<br>Analystic Arrange | Data Analysis<br>모델 학습<br>(Logistic Regression)<br>Analystic Arrange | Data Analysis<br>모델 학습<br>(Logistic Regression)<br>(XGBoost)<br>(LightGBM) |   
 # :computer: 프로젝트 개요
 - **프로젝트 목표 및 목적**  
 1. 통신사 가입 고객 데이터를 분석하여 이탈 고객 예측 모델 개발   
-2. 고객 이탈 대상 확인 후 해당 대상들의 특성을 파악하여 이탈 방지 솔루션 제공   
+2. 고객 이탈 대상 확인 후 해당 대상들의 특성을 파악하여 레이블 플리핑을 활용한 이탈 고객 예측 모델의 근거 확립  
 ###    
+- **레이블 플리핑**
+  데이터셋에서 일부 샘플의 레이블(타겟 값)을 변경하는 것을 말합니다. 예를 들어, 레이블이 0인 샘플을 1로 바꾸거나, 그 반대로 바꾸는것
+
+- **왜 레이블 플리핑을 사용하는가?**
+당신이 수행한 작업은 FP를 TN으로 변경하기 위해 레이블 플리핑을 사용한 것입니다. 이는 다음과 같은 목적을 가지고 있다.
+
+오류 분석: 모델이 왜 FP 오류를 내는지 이해하기 위해 해당 샘플들의 레이블을 변경하고 모델의 반응을 관찰한다.
+특징 분석: FP로 분류된 샘플의 특징(feature)들을 살펴보고, 어떤 특징들이 모델의 예측에 영향을 미치는지 파악한다.
+모델 개선: 이러한 분석을 통해 모델의 성능을 향상시킬 수 있는 인사이트를 얻는다.
 
 - **프로젝트 요구사항**   
 1. 가입 고객 이탈 예측 모델 개발   
 2. 장고를 이용한 예측 결과 화면 개발   
-3. 예측 가능한 이탈 고객 방지 대안 솔루션   
 ###   
 - **가설**   
 1) 가입 고객 이탈 예측 모델을 사용하여 confusion matrix를 만들었을 때, 실제로 고객이 이탈하지 않았지만 예측 모델이 이탈이라고 예측하는 FP(False Positive)의 데이터를 확인한다.
@@ -24,11 +32,11 @@
 </br></br>
 2) 해당 데이터를 트리 기반 모델을 사용하여 이탈할 확률이 높게 예측된 이유 확인
 </br></br>
-<img src="https://github.com/user-attachments/assets/c2ad9567-1010-4f97-928f-7f2c262e816b" alt="김성은" width="700" />
+<img src="https://github.com/user-attachments/assets/dde29d9a-890c-4903-8eec-3a55519b68e7" alt="김성은" width="700" />
 </br></br>
 
 - **결론**   
-이를 통해 이탈 확률이 높은 고객들의 특징을 분석하고 이탈을 방지하는 솔루션을 제공할 수 있을 것이다.   
+모델 결과값의 FP(False Positive) 데이터의 값이 오류가 아닌 가능성 있는 데이터의 값으로 이해 할 수 있다.
 
 ###    
 - **트리기반 모델을 사용하는 이유?**    
@@ -101,24 +109,8 @@ logistic regression / Random Forest Classfication / confusion matrix / Matplotli
 기술 지원을 받지 않고 장기 계약(2년)이 아닌 고객들이 이탈할 가능성이 더 높아 보인다.   
 
 ###   
-- **솔루션**    
-1. 고객 이탈 분석   
-상황: 한 구독 서비스에서 고객 이탈률이 증가하고 있다.   
-분석: 고객 데이터(가입 기간, 사용 패턴, 고객 서비스 이용 내역)를 분석하여 이탈 고객의 특징을 파악      
-
-2. 판매 데이터 분석   
-상황: 특정 제품의 판매가 저조하다.   
-분석: 판매 데이터   
-
-3. 서비스 사용량 분석   
-상황: 장기 구독 서비스 사용자 수는 많지만, 서비스 내의 전환율이 낮다.   
-분석: 사용자 행동 데이터      
-
-솔루션 제공:   
-1) 개인 맞춤형 리텐션 캠페인(예: 할인 혜택, 맞춤형 콘텐츠 제공)을 제안      
-2) 이탈 징후가 보이는 고객에게 조기 경고 시스템 구축   
-3) 가격 조정 및 프로모션 전략 수립   
-4) 고객 피드백을 반영하여 제품 개선 및 신규 기능 추가 제안      
+- ** **    
+ 
 ###   
 # ⚠오류 해결 과정   
 ###   
