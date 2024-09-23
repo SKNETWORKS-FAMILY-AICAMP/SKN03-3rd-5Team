@@ -1,0 +1,17 @@
+<!-- mlapp/templates/mlapp/random_forest_result.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Random Forest Model Result</title>
+</head>
+<body>
+    <h1>Random Forest Model Results</h1>
+    <p>Random Forest Model Accuracy: {{ rf_accuracy }}</p>
+    <p>Training Set Size: {{ n_train }}</p>
+    <p>Test Set Size: {{ n_test }}</p>
+    <h2>Decision Tree Visualization</h2>
+    <img src="{% static tree_image_path %}" alt="Decision Tree Visualization">
+</body>
+</html>

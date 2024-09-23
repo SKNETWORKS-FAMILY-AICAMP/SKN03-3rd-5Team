@@ -1,0 +1,21 @@
+<!-- mlapp/templates/mlapp/predict_result.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Results</title>
+</head>
+<body>
+    <h1>Prediction Results</h1>
+    <p>Threshold: {{ threshold }}</p>
+    <p>Model Accuracy: {{ accuracy }}</p>
+    <h2>Predictions:</h2>
+    <ul>
+        {% for prediction in predictions %}
+            <li>{{ prediction }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'train_model' %}">Back to Training Page</a>
+</body>
+</html>
