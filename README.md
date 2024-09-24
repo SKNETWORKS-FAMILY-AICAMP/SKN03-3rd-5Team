@@ -89,7 +89,8 @@ FN 데이터에 대해서는 실제 이탈 고객이지만 가입고객으로 �
 
 2. 레이블 플러핑 시행, FP 데이터의 타겟을 Positive로, FN 를 Negative 로 변경해준다.
 
-![image](https://github.com/user-attachments/assets/db7dcaee-fae2-4dd0-9c61-b77d58af5a2a)
+![get_graph](https://github.com/user-attachments/assets/844ee448-1594-46ba-a2f2-6bdf7aab1ec7)
+
 
 
 3. 바꾼 데이터를 트리 기반 모델로 재학습, 최대한 과대적합을 수행한다.
