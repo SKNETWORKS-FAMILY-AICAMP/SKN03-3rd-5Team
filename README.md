@@ -8,42 +8,16 @@
 | Data Analysis<br>Data-preprocessing<br>모델 학습<br>(Logistic Regression)<br>프론트<br>Result Comfirm | Data Analysis<br>Data-preprocessing<br>모델 학습<br>(Random Forest Classification)<br>프론트<br>Label Flipping | Data Analysis<br>모델 학습<br>(Random Forest Classification)<br>Analystic Arrange | Data Analysis<br>모델 학습<br>(Logistic Regression)<br>Analystic Arrange | Data Analysis<br>모델 학습<br>(Logistic Regression)<br>(XGBoost)<br>(LightGBM) |   
 # :computer: 프로젝트 개요
 - **프로젝트 목적**  
-1. 통신사 가입 고객 데이터를 분석하여 이탈 고객 예측 모델 개발   
-2. 고객 이탈 대상 확인 후 해당 대상들의 특성을 파악하여 레이블 플리핑을 활용한 이탈 고객 예측 모델의 근거 확립  
-###    
-- **레이블 플리핑**   
-  데이터셋에서 일부 샘플의 레이블(타겟 값)을 변경하는 것을 말한다.   
-  예를 들어, 레이블이 0인 샘플을 1로 바꾸거나, 그 반대로 바꾸는 것을 말한다.      
-###    
-- **왜 레이블 플리핑을 사용하는가?**   
-  오류 분석: 모델이 왜 FP 오류를 내는지 이해하기 위해 해당 샘플들의 레이블을 변경하고 모델의 반응을 관찰한다.   
-  특징 분석: FP로 분류된 샘플의 특징(feature)들을 살펴보고, 어떤 특징들이 모델의 예측에 영향을 미치는지 파악한다.   
-  모델 개선: 이러한 분석을 통해 모델의 성능을 향상시킬 수 있는 인사이트를 얻는다.   
+통신사 가입 고객 데이터를 분석하여 이탈 고객 예측 모델 개발   
+
 ###    
 - **프로젝트 요구사항**   
 1. 가입 고객 이탈 예측 모델 개발   
-2. 장고를 이용한 예측 결과 화면 개발     
-###    
-- **가설**
-1. 가입 고객 이탈 예측 모델을 사용하여 confusion matrix를 만들었을 때, 실제로 고객이 이탈하지 않았지만 예측 모델이 이탈이라고 예측하는 FP(False Positive)의 데이터를 확인한다.
-   위의 confusion matrix의 threshold 값의 변화로 도출되는 FP의 결과가 이탈 확률이 높은 고객과 낮은 고객을 구분하는 기준이 될 수 있다.   
-<img src="https://github.com/user-attachments/assets/a6785af6-b478-40c7-a2f8-fd5761dd87dd" alt="김성은" width="700" />     
-  
-2. 해당 데이터를 트리 기반 모델을 사용하여 이탈할 확률이 높게 예측된 이유 확인   
-</br></br>
-<img src="https://github.com/user-attachments/assets/dde29d9a-890c-4903-8eec-3a55519b68e7" alt="김성은" width="700" />
-</br></br>
+2. 장고를 이용한 예측 결과 화면 개발
+3. 관리자 페이지 개발
 
-- **결론**   
-모델 결과값의 FP(False Positive) 데이터의 값이 오류가 아닌 가능성 있는 데이터의 값으로 이해 할 수 있다.
-
-###    
-- **트리기반 모델을 사용하는 이유?**    
-1) Tree모델을 사용하면 결과값에 대한 이유를 어느정도 이해할 수 있다.   
-2) 데이터를 분할하여 예측을 수행하기 때문에 각 예측이 어떻게 이루어졌는지에 대한 설명이 가능하다.   
-3) 추가로 트리 시각화를 통해 각 데이터 분할 과정과 최종 결정이 어떻게 이루어졌는지 시각적으로 이해할 수 있다.
 ###   
-</br></br>
+</br>
 - **아키텍처**   
 <img src="https://github.com/user-attachments/assets/1b4f6470-4e39-438b-8029-bccb8986fa64" alt="김성은" width="800" />
 </br></br>
@@ -62,11 +36,7 @@
 
 # 📊분석방법   
 - **사용모델**   
-logistic regression / Random Forest Classfication / confusion matrix / Matplotlib
-###    
-- **분석 과정 설명**   
-
-1) logistic regression   
+logistic regression  
 ###   
    - 가입 고객   
    ![logistic regression](https://github.com/user-attachments/assets/4440bdba-29ab-43f5-8115-b80fe40e6125)   
@@ -87,14 +57,38 @@ logistic regression / Random Forest Classfication / confusion matrix / Matplotli
       - 이탈 여부를 확률적으로 분석하였을 때, 이탈 고객의 경우 1(고객이 아니라 판단)로 확실하게 판단한 케이스는 없다.   
          - 이는 확실하게 이탈하는 사람의 패턴이 없다는 것과 필요할 때 구독을 하는 사람으로 인해 결과에 혼동을 준다고 판단할 수 있다.   
       - 따라서, 위의 결과를 통해서 이탈예측고객의 그래프가 이탈고객의 그래프와 유사함을 확인    
+# 관리자 페이지 개발
+ML 모델을 사용한 데이터 분석 외에 추가로 더 얻을 수 있는 정보나 실제 서비스에 활용할 수 있는 방안이 있을지 고민
 
-2) Random Forest Classfication   
-   ![Random Forest Classfication](https://github.com/user-attachments/assets/69e230d8-540a-4fee-bdef-282408966495)   
-   - 실제 결과값은 이탈하지 않았지만 모델이 이탈한다고 예측한 고객(FP)의 실제 결과값을 이탈 고객(Target: 0→ 1)으로  변환한다.   
-   - 변환한 데이터를 포함한 전체 데이터를 트리 모델로 학습한다.   
-   - 처음에 결과값을 변환했던 FP 데이터의 노드를 확인한다.   
-   - 트리가 분할한 컬럼의 값을 하나씩 바꿔보면서 하나의 컬럼으로 인해 결과값이 바뀌는 데이터를 확인한다.   
-   - 해당 컬럼들을 확인하여 모델의 예측 변화에 영향을 주었는지 파악할 수 있다.   
+## 모델의 이탈 예측 고객들의 레이블 플리핑을 활용하여 각 고객별 특성 파악
+###    
+- **레이블 플리핑**   
+  데이터셋에서 일부 샘플의 레이블(타겟 값)을 변경하는 것을 말한다.   
+  예를 들어, 레이블이 0인 샘플을 1로 바꾸거나, 그 반대로 바꾸는 것을 말한다.      
+###    
+- **왜 레이블 플리핑을 사용하는가?**   
+  오류 분석: 모델이 왜 FP 오류를 내는지 이해하기 위해 해당 샘플들의 레이블을 변경하고 모델의 반응을 관찰한다.   
+  특징 분석: FP로 분류된 샘플의 특징(feature)들을 살펴보고, 어떤 특징들이 모델의 예측에 영향을 미치는지 파악한다.   
+  모델 개선: 이러한 분석을 통해 모델의 성능을 향상시킬 수 있는 인사이트를 얻는다.
+   
+###    
+## 모델의 FP 데이터의 재해석, 잘못 예측한 것이 아닌 이탈 가능성이 있거나 높은 고객으로 판단, 해당 고객이 어떤 이유로 모델이 이탈 했다고 예측한 것인지 그 이유를 탐색
+1. 가입 고객 이탈 예측 모델을 사용하여 confusion matrix를 만들었을 때, 실제로 고객이 이탈하지 않았지만 예측 모델이 이탈이라고 예측하는 FP(False Positive)의 데이터를 확인한다. 
+
+![image](https://github.com/user-attachments/assets/46d976d5-8bb6-4025-8206-a4f8a2133224)
+
+FN 데이터에 대해서는 실제 이탈 고객이지만 가입고객으로 예측한 데이터에 대해서는 하나의 이상치라고 해석, threshold, 임의의 비용 함수를 사용하여 FP 의 비율을 높이고 FN 의 비율을 낮춰간다
+
+2. 레이블 플러핑 시행, FP 데이터의 타겟을 Positive로, FN 를 Negative 로 변경해준다.
+
+3. 바꾼 데이터를 트리 기반 모델로 재학습, 최대한 과대적합을 수행
+</br></br>
+<img src="https://github.com/user-attachments/assets/dde29d9a-890c-4903-8eec-3a55519b68e7" alt="김성은" width="700" />
+</br></br>
+
+4. 과대적합된 트리 모델의 생성, 데이터 별로 임의의 노드 경로를 바꿨을 때 반대의 타겟값이 나오게 되는 노드의 탐색
+![image](https://github.com/user-attachments/assets/0cfb83d1-2e93-45d4-992b-94e0b8f22440)
+
 
 
 
