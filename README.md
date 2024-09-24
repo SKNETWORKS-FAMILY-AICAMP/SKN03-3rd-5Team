@@ -18,7 +18,9 @@
 
 ###   
 </br>
+
 - **아키텍처**   
+
 <img src="https://github.com/user-attachments/assets/1b4f6470-4e39-438b-8029-bccb8986fa64" alt="김성은" width="800" />
 </br></br>
 
