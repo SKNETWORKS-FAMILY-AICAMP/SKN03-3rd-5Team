@@ -39,13 +39,15 @@
 logistic regression  
 ###   
    - 가입 고객   
-   ![logistic regression](https://github.com/user-attachments/assets/4440bdba-29ab-43f5-8115-b80fe40e6125)   
+   ![tn](https://github.com/user-attachments/assets/5214c445-5895-48eb-b18c-8dce37293f80)   
+
 ###    
-   - 이탈 고객    
-   ![logistic regression](https://github.com/user-attachments/assets/eb47f65f-e070-49be-b8d5-a93237a9da6d)
+   - 이탈 고객
+   ![tp](https://github.com/user-attachments/assets/9d43cdda-8505-4561-84e5-eac0ff324031)
+
 ###    
    - 이탈 예측 고객    
-   ![logistic regression](https://github.com/user-attachments/assets/d9ed339c-dc74-4213-b3b9-aa183512b38c)
+   ![fp](https://github.com/user-attachments/assets/b4f0655d-1808-4bb0-a538-d641696e25ea)
 
       - 이탈 고객층과 가입 고객층의 결혼 유무와 부양가족 여부가 지속적인 가입에 영향을 줄 수 있다.   
       - 이탈 고객층의 경우에 서비스 전반의 참여가 저조하다.   
@@ -56,7 +58,7 @@ logistic regression
       - 이탈 여부를 확률적으로 분석하였을 때, 장기 고객의 경우 0(고객이라 판단)에 분포가 몰려있는 것을 확인할 수 있다.   
       - 이탈 여부를 확률적으로 분석하였을 때, 이탈 고객의 경우 1(고객이 아니라 판단)로 확실하게 판단한 케이스는 없다.   
          - 이는 확실하게 이탈하는 사람의 패턴이 없다는 것과 필요할 때 구독을 하는 사람으로 인해 결과에 혼동을 준다고 판단할 수 있다.   
-      - 따라서, 위의 결과를 통해서 이탈예측고객의 그래프가 이탈고객의 그래프와 유사함을 확인    
+      - 위에서 확인한 이탈 고객의 경향을 기준으로, 예측 모델이 이탈고객으로 파악한 고객의 경향은 이탈고객의 경향과 유사함을 확인할 수 있다.    
 # 관리자 페이지 개발
 ML 모델을 사용한 데이터 분석 외에 추가로 더 얻을 수 있는 정보나 실제 서비스에 활용할 수 있는 방안이 있을지 고민
 
@@ -76,10 +78,14 @@ ML 모델을 사용한 데이터 분석 외에 추가로 더 얻을 수 있는 �
 1. 가입 고객 이탈 예측 모델을 사용하여 confusion matrix를 만들었을 때, 실제로 고객이 이탈하지 않았지만 예측 모델이 이탈이라고 예측하는 FP(False Positive)의 데이터를 확인한다. 
 
 ![image](https://github.com/user-attachments/assets/46d976d5-8bb6-4025-8206-a4f8a2133224)
+![result1-1](https://github.com/user-attachments/assets/d067c488-8ba5-42d9-963f-def05f0a3a0d)
+![result1-2](https://github.com/user-attachments/assets/34a437ba-f20e-4d86-81a8-62ad1ff1c4ac)
+
 
 FN 데이터에 대해서는 실제 이탈 고객이지만 가입고객으로 예측한 데이터에 대해서는 하나의 이상치라고 해석, threshold, 임의의 비용 함수를 사용하여 FP 의 비율을 높이고 FN 의 비율을 낮춰간다
 
 2. 레이블 플러핑 시행, FP 데이터의 타겟을 Positive로, FN 를 Negative 로 변경해준다.
+![result2](https://github.com/user-attachments/assets/5e2631f6-9d9b-4651-9c40-38465c087e98)
 
 3. 바꾼 데이터를 트리 기반 모델로 재학습, 최대한 과대적합을 수행
 </br></br>
@@ -94,14 +100,17 @@ FN 데이터에 대해서는 실제 이탈 고객이지만 가입고객으로 �
 
 ###   
 # 🚩결과 및 해석   
-- **주요 발견사항**   
-2년 계약이 고객 유지에 중요한 요인으로 확인된다.     
-부양가족이 있는 경우 고객 유지율이 높은 것으로 확인된다.   
-월 요금, 지불 방법, 계약 유형 등이 이탈에 영향을 미치는 것으로 나타난다.   
-스트리밍 서비스 이용 여부도 고객 유지에 영향을 준다.   
-기술 지원을 받지 않고 장기 계약(2년)이 아닌 고객들이 이탈할 가능성이 더 높아 보인다.   
+- **주요 발견사항**
+단기 고객으로 필요한 경우에만 구독을 하고 연장 갱신을 하지 않는 고객이 있다.
+장기간 구독을 유지하는 고객은 2년 계약을 한 경우가 많으며, 이는 장기 고객 유지에 중요한 요인으로 확인된다.     
+부양가족이 있는 경우 구독 유지율이 높은 것으로 확인된다.   
+월 요금, 지불 방법, 계약 유형 등이 이탈에 영향을 미칠 수 있으나, 장기 구독 고객에서는 유의미한 패턴은 나타나지 않는다.   
 
 ###   
+
+- **해석**
+
+
 
  
 ###   
